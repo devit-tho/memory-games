@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.card {
+  perspective: 150rem;
+
+  &:hover &--front {
+    transform: rotateY(-180deg);
+  }
+}

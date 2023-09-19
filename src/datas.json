@@ -1,0 +1,122 @@
+[
+  {
+    "title": "Cow",
+    "img": "./img/cow.png",
+    "isVisible": false
+  },
+  {
+    "title": "Hen",
+    "img": "./img/hen.png",
+    "isVisible": false
+  },
+  {
+    "title": "Elephant",
+    "img": "./img/elephant.png",
+    "isVisible": false
+  },
+  {
+    "title": "Bear",
+    "img": "./img/bear.png",
+    "isVisible": false
+  },
+  {
+    "title": "Cow",
+    "img": "./img/cow.png",
+    "isVisible": false
+  },
+  {
+    "title": "Hen",
+    "img": "./img/hen.png",
+    "isVisible": false
+  },
+  {
+    "title": "Elephant",
+    "img": "./img/elephant.png",
+    "isVisible": false
+  },
+  {
+    "title": "Bear",
+    "img": "./img/bear.png",
+    "isVisible": false
+  },
+  {
+    "title": "Cow",
+    "img": "./img/cow.png",
+    "isVisible": false
+  },
+  {
+    "title": "Hen",
+    "img": "./img/hen.png",
+    "isVisible": false
+  },
+  {
+    "title": "Elephant",
+    "img": "./img/elephant.png",
+    "isVisible": false
+  },
+  {
+    "title": "Bear",
+    "img": "./img/bear.png",
+    "isVisible": false
+  },
+  {
+    "title": "Buffalo",
+    "img": "./img/buffalo.png",
+    "isVisible": false
+  },
+  {
+    "title": "Turtle",
+    "img": "./img/turtle.png",
+    "isVisible": false
+  },
+  {
+    "title": "Monkey",
+    "img": "./img/monkey.png",
+    "isVisible": false
+  },
+  {
+    "title": "Bee",
+    "img": "./img/bee.png",
+    "isVisible": false
+  },
+  {
+    "title": "Buffalo",
+    "img": "./img/buffalo.png",
+    "isVisible": false
+  },
+  {
+    "title": "Turtle",
+    "img": "./img/turtle.png",
+    "isVisible": false
+  },
+  {
+    "title": "Monkey",
+    "img": "./img/monkey.png",
+    "isVisible": false
+  },
+  {
+    "title": "Bee",
+    "img": "./img/bee.png",
+    "isVisible": false
+  },
+  {
+    "title": "Buffalo",
+    "img": "./img/buffalo.png",
+    "isVisible": false
+  },
+  {
+    "title": "Turtle",
+    "img": "./img/turtle.png",
+    "isVisible": false
+  },
+  {
+    "title": "Monkey",
+    "img": "./img/monkey.png",
+    "isVisible": false
+  },
+  {
+    "title": "Bee",
+    "img": "./img/bee.png",
+    "isVisible": false
+  }
+]
