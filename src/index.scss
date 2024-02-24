@@ -49,3 +49,10 @@
     transform: rotateY(0);
   }
 }
+
+:where(.game-over, .game-won) {
+  background-image: url('./wave.svg');
+  background-position: left bottom -80px;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
