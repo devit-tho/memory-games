@@ -22,9 +22,9 @@ export default function Header({ title }) {
 
   return (
     <header className="header bg-primary">
-      <div className="container mx-auto flex items-center justify-between rounded-md px-6 py-5 text-center uppercase">
+      <div className="container mx-auto flex flex-col items-center justify-between rounded-md px-6 py-5 text-center uppercase lg:flex-row">
         <div className="header__title flex items-center gap-x-2">
-          <h1 className="text-sm font-bold tracking-widest text-white  md:text-base lg:text-4xl xl:text-5xl">
+          <h1 className="text-nowrap text-2xl font-bold tracking-widest text-white md:text-4xl lg:text-4xl xl:text-5xl">
             {title}
           </h1>
 
@@ -37,20 +37,35 @@ export default function Header({ title }) {
           </div>
         </div>
 
-        <div className="flex items-center gap-x-4 text-base lg:text-lg 2xl:text-xl">
-          <p className="capitalize text-white">Life: {life}</p>
-          <p className="capitalize text-white">Score: {score}</p>
-          <p className="capitalize text-white">High Score: {highScore}</p>
+        <div className="flex items-center justify-between gap-x-4 pt-4 lg:pt-0">
+          <div className="flex gap-x-4 text-base lg:text-lg 2xl:text-xl">
+            <p className="flex flex-col capitalize text-white sm:flex-row sm:gap-x-2">
+              <span>Life </span>
+              <span>{life}</span>
+            </p>
+            <p className="flex flex-col capitalize text-white sm:flex-row sm:gap-x-2">
+              <span>Score </span>
+              <span>{score}</span>
+            </p>
+            <p className="flex flex-col capitalize text-white sm:flex-row sm:gap-x-2">
+              <span>High Score </span>
+              <span>{highScore}</span>
+            </p>
+          </div>
 
           <div className="flex gap-x-2">
             <button className="rounded-full bg-[#F69400] p-2 text-white transition-all duration-200 hover:bg-[#F69400]/80">
-              <HiMusicalNote />
+              <HiMusicalNote className="h-4 w-4" />
             </button>
             <button
               onClick={handleAudio}
               className="rounded-full bg-[#F69400] p-2 text-white transition-all duration-200 hover:bg-[#F69400]/80"
             >
-              {isOpenAudio ? <HiMiniSpeakerWave /> : <HiMiniSpeakerXMark />}
+              {isOpenAudio ? (
+                <HiMiniSpeakerWave className="h-4 w-4" />
+              ) : (
+                <HiMiniSpeakerXMark className="h-4 w-4" />
+              )}
             </button>
           </div>
         </div>

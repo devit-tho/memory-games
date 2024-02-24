@@ -1,15 +1,15 @@
+import { useMemory } from './context';
 import Header from './components/Header';
 import Games from './components/Games';
-import { useMemory } from './context';
 import GameOver from './components/GameOver';
 
 export default function App() {
-  const { isLose, resetGame } = useMemory();
+  const { isLose } = useMemory();
 
   return (
     <main className="relative flex h-dvh flex-col">
       <Header title="Memory Games" />
-      <div className="h-1.5 bg-[#F69400]"></div>
+      <div className="bg-dark-orange h-1.5"></div>
 
       <div className="grow bg-[#FFEA98] py-10">
         <Games />

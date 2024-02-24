@@ -6,7 +6,7 @@ const initialState = {
   datas: [],
   cardOne: null,
   cardTwo: null,
-  life: 25,
+  life: 1,
   currentScore: 0,
   highScore: localStorage.getItem('highScore') || 0,
   level: 'easy',
@@ -56,7 +56,7 @@ function memoryReducer(state = initialState, action) {
         cardOne: null,
         cardTwo: null,
         currentScore: 0,
-        life: 25,
+        life: 1,
       };
     default:
       return initialState;

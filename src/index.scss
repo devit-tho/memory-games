@@ -2,10 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --color-primary: #ffbd1a;
+  --color-dark-orange: #f69400;
+}
+
 .header {
   &__title {
     h1 {
-      // text-shadow:;
+      text-shadow: var(--color-dark-orange) 3px 0px 4px;
     }
   }
 
