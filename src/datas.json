@@ -1,122 +1,62 @@
 [
   {
     "title": "Cow",
-    "img": "./img/cow.png",
-    "isVisible": false
+    "img": "./img/cow.svg"
   },
   {
     "title": "Hen",
-    "img": "./img/hen.png",
-    "isVisible": false
+    "img": "./img/hen.svg"
   },
   {
     "title": "Elephant",
-    "img": "./img/elephant.png",
-    "isVisible": false
+    "img": "./img/elephant.svg"
   },
   {
     "title": "Bear",
-    "img": "./img/bear.png",
-    "isVisible": false
-  },
-  {
-    "title": "Cow",
-    "img": "./img/cow.png",
-    "isVisible": false
-  },
-  {
-    "title": "Hen",
-    "img": "./img/hen.png",
-    "isVisible": false
-  },
-  {
-    "title": "Elephant",
-    "img": "./img/elephant.png",
-    "isVisible": false
-  },
-  {
-    "title": "Bear",
-    "img": "./img/bear.png",
-    "isVisible": false
-  },
-  {
-    "title": "Cow",
-    "img": "./img/cow.png",
-    "isVisible": false
-  },
-  {
-    "title": "Hen",
-    "img": "./img/hen.png",
-    "isVisible": false
-  },
-  {
-    "title": "Elephant",
-    "img": "./img/elephant.png",
-    "isVisible": false
-  },
-  {
-    "title": "Bear",
-    "img": "./img/bear.png",
-    "isVisible": false
+    "img": "./img/bear.svg"
   },
   {
     "title": "Buffalo",
-    "img": "./img/buffalo.png",
-    "isVisible": false
+    "img": "./img/buffalo.svg"
   },
   {
     "title": "Turtle",
-    "img": "./img/turtle.png",
-    "isVisible": false
+    "img": "./img/turtle.svg"
   },
   {
     "title": "Monkey",
-    "img": "./img/monkey.png",
-    "isVisible": false
+    "img": "./img/monkey.svg"
   },
   {
     "title": "Bee",
-    "img": "./img/bee.png",
-    "isVisible": false
+    "img": "./img/bee.svg"
   },
   {
-    "title": "Buffalo",
-    "img": "./img/buffalo.png",
-    "isVisible": false
+    "title": "Girrafe",
+    "img": "./img/girrafe.svg"
   },
   {
-    "title": "Turtle",
-    "img": "./img/turtle.png",
-    "isVisible": false
+    "title": "Panda",
+    "img": "./img/panda.svg"
   },
   {
-    "title": "Monkey",
-    "img": "./img/monkey.png",
-    "isVisible": false
+    "title": "Goat",
+    "img": "./img/goat.svg"
   },
   {
-    "title": "Bee",
-    "img": "./img/bee.png",
-    "isVisible": false
+    "title": "Donkey",
+    "img": "./img/donkey.svg"
   },
   {
-    "title": "Buffalo",
-    "img": "./img/buffalo.png",
-    "isVisible": false
+    "title": "Dog",
+    "img": "./img/dog.svg"
   },
   {
-    "title": "Turtle",
-    "img": "./img/turtle.png",
-    "isVisible": false
+    "title": "Hippo",
+    "img": "./img/hippo.svg"
   },
   {
-    "title": "Monkey",
-    "img": "./img/monkey.png",
-    "isVisible": false
-  },
-  {
-    "title": "Bee",
-    "img": "./img/bee.png",
-    "isVisible": false
+    "title": "Koala",
+    "img": "./img/koala.svg"
   }
 ]
