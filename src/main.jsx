@@ -1,10 +1,14 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import App from "./App.jsx";
-import "./index.scss";
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App.jsx';
+import { MemoryProvider } from './context';
 
-ReactDOM.createRoot(document.getElementById("root")).render(
+import './index.scss';
+
+ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <App />
+    <MemoryProvider>
+      <App />
+    </MemoryProvider>
   </React.StrictMode>,
 );
