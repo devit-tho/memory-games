@@ -12,7 +12,7 @@ function GameOver() {
       const audio = new Audio(gameOverAudio);
 
       setTimeout(() => {
-        // audio.play();
+        audio.play();
       }, 500);
     }
 

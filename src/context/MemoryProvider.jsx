@@ -6,9 +6,9 @@ const initialState = {
   datas: [],
   cardOne: null,
   cardTwo: null,
-  life: 1,
+  life: 25,
   currentScore: 0,
-  highScore: localStorage.getItem('highScore') || 0,
+  highScore: localStorage.getItem('highScore'),
   level: 'easy',
   duration: 1000 * 60 * 5,
 };
@@ -56,7 +56,7 @@ function memoryReducer(state = initialState, action) {
         cardOne: null,
         cardTwo: null,
         currentScore: 0,
-        life: 1,
+        life: 25,
       };
     default:
       return initialState;
@@ -93,8 +93,13 @@ export function MemoryProvider({ children }) {
   }, [randomCard]);
 
   useEffect(() => {
-    localStorage.setItem('highScore', memoryState.highScore);
-  }, [memoryState.highScore]);
+    localStorage.setItem(
+      'highScore',
+      memoryState.currentScore > localStorage.getItem('highScore')
+        ? memoryState.currentScore
+        : localStorage.getItem('highScore'),
+    );
+  }, [memoryState.currentScore]);
 
   useEffect(() => {
     if (memoryState.cardOne && memoryState.cardTwo) {
