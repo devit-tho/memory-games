@@ -15,7 +15,7 @@ function Card({ data, dispatch, setCard, ind, isClicked }) {
 
   return (
     <button
-      className={`card${data.isVisible ? ' open' : ''}`}
+      className={`card ${data.isVisible ? ' open' : ''}`}
       onClick={(e) => handleClick({ e, item: data })}
       disabled={isClicked || (cardOne && cardTwo)}
     >

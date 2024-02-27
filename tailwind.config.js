@@ -4,7 +4,8 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: '#FFBD1A',
+        primary: 'var(--color-primary)',
+        'dark-orange': 'var(--color-dark-orange)',
       },
     },
   },

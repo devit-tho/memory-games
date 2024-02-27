@@ -6,9 +6,9 @@ const initialState = {
   datas: [],
   cardOne: null,
   cardTwo: null,
-  life: 20,
+  life: 25,
   currentScore: 0,
-  highScore: localStorage.getItem('highScore') || 0,
+  highScore: localStorage.getItem('highScore'),
   level: 'easy',
   duration: 1000 * 60 * 5,
 };
@@ -56,7 +56,7 @@ function memoryReducer(state = initialState, action) {
         cardOne: null,
         cardTwo: null,
         currentScore: 0,
-        life: 20,
+        life: 25,
       };
     default:
       return initialState;
@@ -93,8 +93,13 @@ export function MemoryProvider({ children }) {
   }, [randomCard]);
 
   useEffect(() => {
-    localStorage.setItem('highScore', memoryState.highScore);
-  }, [memoryState.highScore]);
+    localStorage.setItem(
+      'highScore',
+      memoryState.currentScore > localStorage.getItem('highScore')
+        ? memoryState.currentScore
+        : localStorage.getItem('highScore'),
+    );
+  }, [memoryState.currentScore]);
 
   useEffect(() => {
     if (memoryState.cardOne && memoryState.cardTwo) {
@@ -111,27 +116,22 @@ export function MemoryProvider({ children }) {
   }, [memoryState.cardOne, memoryState.cardTwo]);
 
   const setLevel = useCallback((level = 'easy') => {
-    if (level === 'easy') {
+    if (level === 'easy')
       dispatch({
         type: 'levelEasy',
         payload: {
           life: 20,
         },
       });
-    }
-
-    if (level === 'medium') {
+    else if (level === 'medium')
       dispatch({
         type: 'levelMedium',
         payload: {
           life: 15,
         },
       });
-    }
-
-    if (level === 'hard') {
+    else if (level === 'hard')
       dispatch({ type: 'levelHard', payload: { life: 10 } });
-    }
 
     if (level === 'difficult') {
       dispatch({ type: 'levelDifficult', payload: { life: 5 } });
@@ -154,7 +154,10 @@ export function MemoryProvider({ children }) {
 
   const isLose = useMemo(() => memoryState.life <= 0, [memoryState.life]);
 
-  const isGameWon = memoryState.datas.every((memory) => memory.isVisible);
+  const isGameWon = useMemo(
+    () => memoryState.datas.every((memory) => memory.isVisible),
+    [memoryState.datas],
+  );
 
   const memoizedValue = useMemo(
     () => ({
