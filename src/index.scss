@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  --color-primary: #ffbd1a;
+  --color-primary: hsl(43, 100%, 55%);
   --color-dark-orange: #f69400;
 }
 
@@ -55,7 +55,7 @@
   }
 }
 
-:where(.game-over, .game-won) {
+:where(.game-over, .game-won, .game-menu) {
   background-image: url('./wave.svg');
   background-position: left bottom -80px;
   background-size: cover;

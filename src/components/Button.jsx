@@ -3,12 +3,12 @@ import { motion } from 'framer-motion';
 function Button({ children, onClick, ...props }) {
   return (
     <motion.button
-      className="rounded bg-primary px-4 py-2 text-2xl font-semibold text-white transition-all duration-300 hover:bg-primary/60"
+      className="hover:bg-primary/60 rounded bg-primary px-4 py-2 text-2xl font-semibold text-white"
       whileTap={{
-        scale: 0.9,
+        scale: 0.8,
       }}
       transition={{
-        duration: 1.2,
+        duration: 0.25,
       }}
       onClick={onClick}
       {...props}

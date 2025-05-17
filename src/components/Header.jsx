@@ -1,23 +1,20 @@
+import { format } from 'date-fns';
 import { useState } from 'react';
-import { useMemory } from '../context';
 import {
-  HiMusicalNote,
-  HiNoSymbol,
   HiMiniSpeakerWave,
   HiMiniSpeakerXMark,
+  HiOutlineCog6Tooth,
 } from 'react-icons/hi2';
+import { useMemory } from '../context';
 
 export default function Header({ title }) {
   const [isOpenAudio, setIsOpenAudio] = useState(false);
-  const [isOpenMusic, setIsOpenMusic] = useState(false);
-  const { life, score, highScore } = useMemory();
+
+  const { life, score, highScore, pauseGame, duration, toggleAudio, audio } =
+    useMemory();
 
   function handleMusic() {
     setIsOpenMusic((prevMusic) => !prevMusic);
-  }
-
-  function handleAudio() {
-    setIsOpenAudio((prevAudio) => !prevAudio);
   }
 
   return (
@@ -51,21 +48,31 @@ export default function Header({ title }) {
               <span>High Score </span>
               <span>{highScore}</span>
             </p>
+            <p className="flex flex-col capitalize text-white sm:flex-row sm:gap-x-2">
+              <span>Time</span>
+              <span>{format(duration, 'mm:ss')}</span>
+            </p>
           </div>
 
           <div className="flex gap-x-2">
-            <button className="rounded-full bg-[#F69400] p-2 text-white transition-all duration-200 hover:bg-[#F69400]/80">
+            {/* <button className="rounded-full bg-[#F69400] p-2 text-white transition-all duration-200 hover:bg-[#F69400]/80">
               <HiMusicalNote className="h-4 w-4" />
-            </button>
+            </button> */}
             <button
-              onClick={handleAudio}
+              onClick={toggleAudio}
               className="rounded-full bg-[#F69400] p-2 text-white transition-all duration-200 hover:bg-[#F69400]/80"
             >
-              {isOpenAudio ? (
+              {audio ? (
                 <HiMiniSpeakerWave className="h-4 w-4" />
               ) : (
                 <HiMiniSpeakerXMark className="h-4 w-4" />
               )}
+            </button>
+            <button
+              className="rounded-full bg-[#F69400] p-2 text-white transition-all duration-200 hover:bg-[#F69400]/80"
+              onClick={pauseGame}
+            >
+              <HiOutlineCog6Tooth className="h-4 w-4" />
             </button>
           </div>
         </div>

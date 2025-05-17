@@ -1,6 +1,8 @@
-import { useReducer, useEffect, useCallback, useMemo } from 'react';
-import { MemoryContext } from './MemoryContext';
+import { useCallback, useEffect, useMemo, useReducer } from 'react';
 import datas from '../datas.json';
+import { MemoryContext } from './MemoryContext';
+
+const levelDatas = ['easy', 'medium', 'hard', 'difficult'];
 
 const initialState = {
   datas: [],
@@ -8,10 +10,18 @@ const initialState = {
   cardTwo: null,
   life: 25,
   currentScore: 0,
-  highScore: localStorage.getItem('highScore'),
-  level: 'easy',
-  duration: 1000 * 60 * 5,
+  highScore: Number(JSON.parse(localStorage.getItem('config'))?.highScore) || 0,
+  level: JSON.parse(localStorage.getItem('config'))?.level || levelDatas[0],
+  isStart: false,
+  isPause: false,
+  isPlaying: false,
+  audio: false,
+  duration: convertMinute(5),
 };
+
+function convertMinute(minute) {
+  return 1000 * 60 * minute;
+}
 
 function memoryReducer(state = initialState, action) {
   switch (action.type) {
@@ -24,7 +34,7 @@ function memoryReducer(state = initialState, action) {
     case 'open':
       return {
         ...state,
-        datas: state.datas?.map((data, ind) =>
+        datas: (state.datas || []).map((data, ind) =>
           action.payload === ind
             ? { ...data, isVisible: !data.isVisible, isClicked: true }
             : data,
@@ -56,8 +66,37 @@ function memoryReducer(state = initialState, action) {
         cardOne: null,
         cardTwo: null,
         currentScore: 0,
+        isPlaying: true,
+        isPause: false,
         life: 25,
+        duration: convertMinute(5),
       };
+    case 'play':
+      return {
+        ...state,
+        isPlaying: true,
+        isStart: true,
+        duration: convertMinute(5),
+      };
+    case 'pause':
+      return { ...state, isPause: true, isPlaying: false };
+    case 'continue':
+      return { ...state, isPause: false, isPlaying: true };
+    case 'level':
+      return {
+        ...state,
+        level: action.payload.level,
+        life: action.payload.life,
+        duration: action.payload.duration,
+        score: 0,
+      };
+    case 'timeout':
+      return {
+        ...state,
+        duration: state.duration < 1 ? 0 : state.duration - 1000,
+      };
+    case 'toggleAudio':
+      return { ...state, audio: !state.audio };
     default:
       return initialState;
   }
@@ -88,19 +127,46 @@ export function MemoryProvider({ children }) {
     });
   }, []);
 
+  const isLose = useMemo(
+    () =>
+      memoryState.life < 1 ||
+      memoryState.duration < 1 ||
+      (memoryState.isStart && !memoryState.isPlaying && !memoryState.isPause),
+    [
+      memoryState.life,
+      memoryState.duration,
+      memoryState.isPlaying,
+      memoryState.isPause,
+      memoryState.isStart,
+    ],
+  );
+
+  const isGameWon = useMemo(
+    () => memoryState.datas.every((memory) => memory.isVisible),
+    [memoryState.datas],
+  );
+
   useEffect(() => {
     randomCard();
   }, [randomCard]);
 
+  // Set Level and High Score
   useEffect(() => {
+    const config = JSON.parse(localStorage.getItem('config') || '{}');
     localStorage.setItem(
-      'highScore',
-      memoryState.currentScore > localStorage.getItem('highScore')
-        ? memoryState.currentScore
-        : localStorage.getItem('highScore'),
+      'config',
+      JSON.stringify({
+        ...config,
+        highScore:
+          memoryState.currentScore > memoryState.highScore
+            ? memoryState.currentScore
+            : memoryState.highScore,
+        level: memoryState.level,
+      }),
     );
-  }, [memoryState.currentScore]);
+  }, [memoryState.currentScore, memoryState.level]);
 
+  // Open Card
   useEffect(() => {
     if (memoryState.cardOne && memoryState.cardTwo) {
       const isMatched = memoryState.cardOne?.id === memoryState.cardTwo?.id;
@@ -115,29 +181,51 @@ export function MemoryProvider({ children }) {
     }
   }, [memoryState.cardOne, memoryState.cardTwo]);
 
-  const setLevel = useCallback((level = 'easy') => {
-    if (level === 'easy')
+  // Duration
+  useEffect(() => {
+    if (!memoryState.isPlaying || memoryState.isPause || isGameWon || isLose)
+      return;
+
+    const timeout = setInterval(() => {
+      dispatch({ type: 'timeout' });
+    }, 1000);
+    return () => clearTimeout(timeout);
+  }, [memoryState.isPlaying, memoryState.isPause]);
+
+  // Set Level
+  const setLevel = useCallback((level = levelDatas[0]) => {
+    if (level === levelDatas[0]) {
       dispatch({
-        type: 'levelEasy',
+        type: 'level',
         payload: {
           life: 20,
+          level: 'easy',
+          duration: convertMinute(5),
         },
       });
-    else if (level === 'medium')
+    } else if (level === levelDatas[1]) {
       dispatch({
-        type: 'levelMedium',
+        type: 'level',
         payload: {
           life: 15,
+          level: 'medium',
+          duration: convertMinute(4),
         },
       });
-    else if (level === 'hard')
-      dispatch({ type: 'levelHard', payload: { life: 10 } });
-
-    if (level === 'difficult') {
-      dispatch({ type: 'levelDifficult', payload: { life: 5 } });
+    } else if (level === levelDatas[2]) {
+      dispatch({
+        type: 'level',
+        payload: { life: 10, level: levelDatas[2], duration: convertMinute(3) },
+      });
+    } else {
+      dispatch({
+        type: 'level',
+        payload: { life: 5, level: levelDatas[3], duration: convertMinute(2) },
+      });
     }
   }, []);
 
+  // Set Card
   const setCard = useCallback(
     (card) => {
       if (!memoryState.cardOne) return dispatch({ type: 'one', payload: card });
@@ -147,20 +235,36 @@ export function MemoryProvider({ children }) {
     [memoryState.cardOne, memoryState.cardTwo],
   );
 
+  // Toggle Audio
+  const toggleAudio = useCallback(() => {
+    dispatch({ type: 'toggleAudio' });
+  }, []);
+
+  // Reset Game
   const resetGame = useCallback(() => {
     dispatch({ type: 'reset' });
     randomCard();
   }, []);
 
-  const isLose = useMemo(() => memoryState.life <= 0, [memoryState.life]);
+  // Start Game
+  const startGame = useCallback(() => {
+    dispatch({ type: 'play' });
+    resetGame();
+  }, []);
 
-  const isGameWon = useMemo(
-    () => memoryState.datas.every((memory) => memory.isVisible),
-    [memoryState.datas],
-  );
+  // Pause Game
+  const pauseGame = useCallback(() => {
+    dispatch({ type: 'pause' });
+  }, []);
+
+  // Continue Game
+  const continueGame = useCallback(() => {
+    dispatch({ type: 'continue' });
+  }, []);
 
   const memoizedValue = useMemo(
     () => ({
+      audio: memoryState.audio,
       datas: memoryState.datas,
       life: memoryState.life,
       score: memoryState.currentScore,
@@ -168,25 +272,45 @@ export function MemoryProvider({ children }) {
       cardOne: memoryState.cardOne,
       cardTwo: memoryState.cardTwo,
       isGameWon,
+      isPause: memoryState.isPause,
       isLose,
+      isPlaying: memoryState.isPlaying,
+      isStart: memoryState.isStart,
+      duration: memoryState.duration,
+      level: memoryState.level,
+      levelDatas,
       dispatch,
       setCard,
       setLevel,
+      startGame,
+      pauseGame,
+      continueGame,
       resetGame,
+      toggleAudio,
     }),
     [
+      memoryState.audio,
       memoryState.datas,
       memoryState.life,
       memoryState.currentScore,
       memoryState.highScore,
       memoryState.cardOne,
       memoryState.cardTwo,
+      memoryState.isPlaying,
+      memoryState.isPause,
+      memoryState.duration,
+      memoryState.isStart,
+      memoryState.level,
       isGameWon,
       isLose,
       dispatch,
       setLevel,
       setCard,
+      startGame,
+      pauseGame,
+      continueGame,
       resetGame,
+      toggleAudio,
     ],
   );
 

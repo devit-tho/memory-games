@@ -1,7 +1,15 @@
 import { useMemory } from '../context';
+import cardOpen from './../assets/audio/card-open.mp3';
 
 function Card({ data, dispatch, setCard, ind, isClicked }) {
-  const { cardOne, cardTwo } = useMemory();
+  const { cardOne, cardTwo, audio } = useMemory();
+
+  function playAudio() {
+    if (audio) {
+      const audio = new Audio(cardOpen);
+      audio.play();
+    }
+  }
 
   function handleClick({ e, item }) {
     e.preventDefault();
@@ -10,6 +18,7 @@ function Card({ data, dispatch, setCard, ind, isClicked }) {
       dispatch({ type: 'open', payload: ind });
 
       setCard(item);
+      playAudio();
     }
   }
 
