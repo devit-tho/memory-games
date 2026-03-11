@@ -39,4 +39,4 @@ This is a collection of memory games I have made.
 
 2. Press the "Start game" button
 
-3. Play the game and Enjoy the memory game 😊
+3. Play the game and enjoy it 😊
