@@ -1,8 +1,55 @@
-# React + Vite
+## Memory Games
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a collection of memory games I have made.
 
-Currently, two official plugins are available:
+## Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- React
+- TailwindCSS
+- Vite
+
+## 📁 Project Structure
+
+```
+.
+├── node_modules/          # Installed dependencies
+├── public/                # Static assets served directly
+├── src/                   # Main application source code
+│   ├── assets/            # Images, icons, and other static resources
+│   ├── components/        # Reusable React components
+│   │   ├── Button.jsx
+│   │   ├── Card.jsx
+│   │   ├── GameMenu.jsx
+│   │   ├── GameOver.jsx
+│   │   ├── Games.jsx
+│   │   ├── GameWon.jsx
+│   │   ├── Header.jsx
+│   │   └── OptionsCard.jsx
+│   │
+│   ├── context/           # React Context providers for global state
+│   │
+│   ├── App.jsx            # Root React component
+│   ├── data.json          # Game data or configuration
+│   ├── index.scss         # Global styles
+│   └── main.jsx           # Application entry point
+│
+├── .eslintrc.cjs          # ESLint configuration
+├── .gitignore             # Git ignored files
+├── index.html             # Main HTML template
+├── package.json           # Project dependencies and scripts
+├── pnpm-lock.yaml         # PNPM dependency lock file
+├── postcss.config.js      # PostCSS configuration
+├── prettier.config.cjs    # Prettier formatting rules
+├── tailwind.config.js     # TailwindCSS configuration
+├── vite.config.js         # Vite configuration
+```
+
+## How to play
+
+1. Choose the level
+
+2. Press the "Start game" button
+
+3. Play the game
+
+4. Enjoy the game 😊
