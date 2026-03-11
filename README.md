@@ -17,22 +17,11 @@ This is a collection of memory games I have made.
 ├── src/                   # Main application source code
 │   ├── assets/            # Images, icons, and other static resources
 │   ├── components/        # Reusable React components
-│   │   ├── Button.jsx
-│   │   ├── Card.jsx
-│   │   ├── GameMenu.jsx
-│   │   ├── GameOver.jsx
-│   │   ├── Games.jsx
-│   │   ├── GameWon.jsx
-│   │   ├── Header.jsx
-│   │   └── OptionsCard.jsx
-│   │
 │   ├── context/           # React Context providers for global state
-│   │
 │   ├── App.jsx            # Root React component
 │   ├── data.json          # Game data or configuration
 │   ├── index.scss         # Global styles
 │   └── main.jsx           # Application entry point
-│
 ├── .eslintrc.cjs          # ESLint configuration
 ├── .gitignore             # Git ignored files
 ├── index.html             # Main HTML template
