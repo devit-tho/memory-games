@@ -11,26 +11,25 @@ This is a collection of memory games I have made.
 ## 📁 Project Structure
 
 ```
-.
-├── node_modules/          # Installed dependencies
-├── public/                # Static assets served directly
-├── src/                   # Main application source code
-│   ├── assets/            # Images, icons, and other static resources
-│   ├── components/        # Reusable React components
-│   ├── context/           # React Context providers for global state
-│   ├── App.jsx            # Root React component
-│   ├── data.json          # Game data or configuration
-│   ├── index.scss         # Global styles
-│   └── main.jsx           # Application entry point
-├── .eslintrc.cjs          # ESLint configuration
-├── .gitignore             # Git ignored files
-├── index.html             # Main HTML template
-├── package.json           # Project dependencies and scripts
-├── pnpm-lock.yaml         # PNPM dependency lock file
-├── postcss.config.js      # PostCSS configuration
-├── prettier.config.cjs    # Prettier formatting rules
-├── tailwind.config.js     # TailwindCSS configuration
-├── vite.config.js         # Vite configuration
+├── 📁 public
+├── 📁 src
+│   ├── 📁 assets
+│   ├── 📁 components
+│   ├── 📁 context
+│   ├── 📄 App.jsx
+│   ├── ⚙️ datas.json
+│   ├── 🎨 index.scss
+│   └── 📄 main.jsx
+├── ⚙️ .eslintrc.cjs
+├── ⚙️ .gitignore
+├── 📝 README.md
+├── 🌐 index.html
+├── ⚙️ package.json
+├── ⚙️ pnpm-lock.yaml
+├── 📄 postcss.config.js
+├── 📄 prettier.config.cjs
+├── 📄 tailwind.config.js
+└── 📄 vite.config.js
 ```
 
 ## How to play
