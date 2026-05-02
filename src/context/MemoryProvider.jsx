@@ -33,7 +33,7 @@ function getLifeLevel(level) {
 function getTimeLevel(level) {
   if (level === 'easy') return convertMinute(5);
   if (level === 'medium') return convertMinute(4);
-  return 3;
+  return convertMinute(3);
 }
 
 function memoryReducer(state = initialState, action) {
