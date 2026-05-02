@@ -23,6 +23,19 @@ function convertMinute(minute) {
   return 1000 * 60 * minute;
 }
 
+function getLifeLevel(level) {
+  if (level === 'easy') return 30;
+  if (level === 'medium') return 20;
+  if (level === 'hard') return 15;
+  return 10;
+}
+
+function getTimeLevel(level) {
+  if (level === 'easy') return convertMinute(5);
+  if (level === 'medium') return convertMinute(4);
+  return 3;
+}
+
 function memoryReducer(state = initialState, action) {
   switch (action.type) {
     case 'initialData':
@@ -68,15 +81,15 @@ function memoryReducer(state = initialState, action) {
         currentScore: 0,
         isPlaying: true,
         isPause: false,
-        life: 25,
-        duration: convertMinute(5),
+        life: getLifeLevel(state.level),
+        duration: getTimeLevel(state.level),
       };
     case 'play':
       return {
         ...state,
         isPlaying: true,
         isStart: true,
-        duration: convertMinute(5),
+        duration: getTimeLevel(state.level),
       };
     case 'pause':
       return { ...state, isPause: true, isPlaying: false };
@@ -89,6 +102,9 @@ function memoryReducer(state = initialState, action) {
         life: action.payload.life,
         duration: action.payload.duration,
         score: 0,
+        isStart: false,
+        isPlaying: false,
+        isPause: false,
       };
     case 'timeout':
       return {
@@ -194,35 +210,14 @@ export function MemoryProvider({ children }) {
 
   // Set Level
   const setLevel = useCallback((level = levelDatas[0]) => {
-    if (level === levelDatas[0]) {
-      dispatch({
-        type: 'level',
-        payload: {
-          life: 20,
-          level: 'easy',
-          duration: convertMinute(5),
-        },
-      });
-    } else if (level === levelDatas[1]) {
-      dispatch({
-        type: 'level',
-        payload: {
-          life: 15,
-          level: 'medium',
-          duration: convertMinute(4),
-        },
-      });
-    } else if (level === levelDatas[2]) {
-      dispatch({
-        type: 'level',
-        payload: { life: 10, level: levelDatas[2], duration: convertMinute(3) },
-      });
-    } else {
-      dispatch({
-        type: 'level',
-        payload: { life: 5, level: levelDatas[3], duration: convertMinute(2) },
-      });
-    }
+    dispatch({
+      type: 'level',
+      payload: {
+        life: getLifeLevel(level),
+        level,
+        duration: getTimeLevel(level),
+      },
+    });
   }, []);
 
   // Set Card
