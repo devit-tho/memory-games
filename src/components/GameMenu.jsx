@@ -13,8 +13,8 @@ function GameMenu() {
   }
 
   return (
-    <div className="game-menu absolute inset-0 z-50 flex h-full w-full flex-col items-center justify-center gap-y-6 bg-white/80">
-      <div className="flex w-[500px] flex-col gap-y-4 rounded-xl border-4 border-primary bg-white p-4">
+    <div className="game-menu absolute inset-0 z-50 flex h-full w-full flex-col items-center justify-center gap-y-6 bg-white/80 p-4">
+      <div className="flex w-full max-w-[500px] flex-col gap-y-4 rounded-xl border-4 border-primary bg-white p-4">
         {isPause && <Button onClick={continueGame}>Continue</Button>}
 
         <Button onClick={startGame}>

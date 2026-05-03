@@ -45,7 +45,7 @@ export default function Header({ title }) {
               <span>{score}</span>
             </p>
             <p className="flex flex-col capitalize text-white sm:flex-row sm:gap-x-2">
-              <span>High Score </span>
+              <span className="text-nowrap">High Score </span>
               <span>{highScore}</span>
             </p>
             <p className="flex flex-col capitalize text-white sm:flex-row sm:gap-x-2">
