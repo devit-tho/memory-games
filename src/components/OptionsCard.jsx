@@ -5,19 +5,17 @@ import { useMemory } from '../context';
 function OptionsCard({ closeOption, updateLevel }) {
   const { levelDatas, level: lvl } = useMemory();
 
-  console.log(lvl);
-
   return (
     <div className="absolute z-20 flex h-dvh w-full items-center justify-center bg-black/40">
-      <div className="relative">
+      <div className="relative w-full max-w-[500px] p-4">
         <button
-          className="absolute -right-4 -top-4 rounded-full border-4 border-primary bg-white p-2"
+          className="absolute -top-1 right-0 rounded-full border-4 border-primary bg-white p-2"
           onClick={closeOption}
         >
           <HiOutlineXMark className="size-4" />
         </button>
 
-        <div className="flex w-[500px] flex-col gap-y-4 rounded-xl border-4 border-primary bg-white p-4">
+        <div className="flex flex-col gap-y-4 rounded-xl border-4 border-primary bg-white p-4">
           {levelDatas.map((level) => (
             <button
               key={level}
